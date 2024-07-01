@@ -1,0 +1,38 @@
+﻿@model TECNOLIGICCASE.Models.Departamento
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalles Departamento</h1>
+
+<div>
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NombreDepartamento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NombreDepartamento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaModificacion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FechaModificacion)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdDepartamento" class="btn btn-warning btn-sm"><i class="bi bi-pencil"></i>Editar</a>
+    <br>
+    <br>
+    <a asp-action="Index" class="btn btn-secondary btn-sm"><i class="bi bi-arrow-return-left"></i>Regresar</a>
+</div>

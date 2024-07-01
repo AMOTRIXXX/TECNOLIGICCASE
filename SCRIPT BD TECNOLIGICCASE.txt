@@ -1,0 +1,148 @@
+
+
+CREATE DATABASE WEBTECNOLOGIA;
+-- Usar la base de datos recién creada
+USE WEBTECNOLOGIA;
+
+
+-- Crear la tabla DEPARTAMENTO
+CREATE TABLE DEPARTAMENTO (
+    IdDepartamento INT PRIMARY KEY IDENTITY,
+    NombreDepartamento VARCHAR(100) UNIQUE,
+    FechaCreacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FechaModificacion DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- Crear la tabla CARGO
+CREATE TABLE CARGO (
+    IdCargo INT PRIMARY KEY IDENTITY,
+    Descripcion VARCHAR(100) UNIQUE,
+    FechaCreacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FechaModificacion DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE EMPLEADO (
+    IdEmpleado INT PRIMARY KEY IDENTITY,
+    tipo_documento VARCHAR(5),
+    NoDocumento VARCHAR(20) UNIQUE,
+    Nombres VARCHAR(100),
+    Apellidos VARCHAR(100),
+    IdDepart INT,
+    IdCargo INT,
+    Ciudad VARCHAR(100),
+    Direccion VARCHAR(200),
+    Email VARCHAR(100) UNIQUE,
+    Telefono VARCHAR(15),
+    Sueldo DECIMAL(10, 2),
+    Antiguedad VARCHAR(100),
+    FechaCreacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FechaModificacion DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE HistorialEdicionesEmpleado (
+IdHistorial INT PRIMARY KEY IDENTITY,
+IdEmpleado INT,
+NoDocumento VARCHAR(20),
+Nombres VARCHAR(100),
+Apellidos VARCHAR(100),
+EntidadesEditadas VARCHAR(MAX),
+DatosAntiguos VARCHAR(MAX),
+DatosNuevos VARCHAR(MAX),
+FechaEdicion DATETIME DEFAULT CURRENT_TIMESTAMP,
+CONSTRAINT FK_HistorialEdicionesEmpleado_Empleado FOREIGN KEY (IdEmpleado) REFERENCES EMPLEADO(IdEmpleado)
+)
+
+CREATE TABLE HistorialEdicionesDepartamento (
+    IdHistorial INT PRIMARY KEY IDENTITY,
+    IdDepartamento INT,
+    NombreDepartamento NVARCHAR(100),
+    DatosAntiguos NVARCHAR(MAX),
+    DatosNuevos NVARCHAR(MAX),
+    FechaEdicion DATETIME DEFAULT GETDATE(),
+    CONSTRAINT FK_HistorialEdicionesDepartamento_Departamento FOREIGN KEY (IdDepartamento) REFERENCES Departamento(IdDepartamento)
+);
+
+CREATE TABLE HistorialEdicionesCargo (
+    IdHistorial INT PRIMARY KEY IDENTITY,
+    IdCargo INT,
+    Descripcion NVARCHAR(100),
+    DatosAntiguos NVARCHAR(MAX),
+    DatosNuevos NVARCHAR(MAX),
+    FechaEdicion DATETIME DEFAULT GETDATE(),
+    CONSTRAINT FK_HistorialEdicionesCargo_Cargo FOREIGN KEY (IdCargo) REFERENCES Cargo(IdCargo)
+);
+
+INSERT INTO DEPARTAMENTO (NombreDepartamento)
+VALUES ('Desarrollo');
+
+INSERT INTO DEPARTAMENTO (NombreDepartamento)
+VALUES ('Diseño');
+
+INSERT INTO DEPARTAMENTO (NombreDepartamento)
+VALUES ('QA');
+
+INSERT INTO DEPARTAMENTO (NombreDepartamento)
+VALUES ('Infraestructura');
+
+INSERT INTO DEPARTAMENTO (NombreDepartamento)
+VALUES ('DevOps');
+
+INSERT INTO DEPARTAMENTO (NombreDepartamento)
+VALUES ('Soporte');
+
+INSERT INTO DEPARTAMENTO (NombreDepartamento)
+VALUES ('Administración');
+
+INSERT INTO CARGO (Descripcion)
+VALUES ('Desarrollador Front-end');
+
+INSERT INTO CARGO (Descripcion)
+VALUES ('Desarrollador Back-end');
+
+INSERT INTO CARGO (Descripcion)
+VALUES ('Diseñador UX/UI');
+
+INSERT INTO CARGO (Descripcion)
+VALUES ('Tester QA');
+
+INSERT INTO CARGO (Descripcion)
+VALUES ('Ingeniero de Infraestructura');
+
+INSERT INTO CARGO (Descripcion)
+VALUES ('Ingeniero DevOps');
+
+INSERT INTO CARGO (Descripcion)
+VALUES ('Especialista de Soporte');
+
+INSERT INTO EMPLEADO (tipo_documento, NoDocumento, Nombres, Apellidos, IdDepart, IdCargo, Ciudad, Direccion, Email, Telefono, Sueldo, Antiguedad)
+VALUES ('CC', '123456789', 'Juan', 'Perez', 1, 1, 'Bogotá', 'Calle 10 # 10-10', 'juan.perez@email.com', '3123456789', 3500000, '2 años');
+
+INSERT INTO EMPLEADO (tipo_documento, NoDocumento, Nombres, Apellidos, IdDepart, IdCargo, Ciudad, Direccion, Email, Telefono, Sueldo, Antiguedad)
+VALUES ('CC', '987654321', 'Maria', 'Gómez', 2, 3, 'Medellín', 'Carrera 50 # 50-50', 'maria.gomez@email.com', '3101234567', 2800000, '1 año');
+
+INSERT INTO EMPLEADO (tipo_documento, NoDocumento, Nombres, Apellidos, IdDepart, IdCargo, Ciudad, Direccion, Email, Telefono, Sueldo, Antiguedad)
+VALUES ('CE', '1234567890', 'Pedro', 'López', 3, 4, 'Cali', 'Avenida 20 # 20-20', 'pedro.lopez@email.com', '3145678901', 2500000, '3 años');
+
+INSERT INTO EMPLEADO (tipo_documento, NoDocumento, Nombres, Apellidos, IdDepart, IdCargo, Ciudad, Direccion, Email, Telefono, Sueldo, Antiguedad)
+VALUES ('TI', '0987654321', 'Ana', 'Rodríguez', 5, 6, 'Barranquilla', 'Calle 80 # 80-80', 'ana.rodriguez@email.com', '3112345678', 4000000, '5 años');
+
+
+INSERT INTO EMPLEADO (tipo_documento, NoDocumento, Nombres, Apellidos, IdDepart, IdCargo, Ciudad, Direccion, Email, Telefono, Sueldo, Antiguedad)
+VALUES ('CC', '111222333', 'Carlos', 'Martínez', 4, 5, 'Cartagena', 'Calle 30 # 30-30', 'carlos.martinez@email.com', '3156781234', 3200000, '4 años');
+
+
+INSERT INTO EMPLEADO (tipo_documento, NoDocumento, Nombres, Apellidos, IdDepart, IdCargo, Ciudad, Direccion, Email, Telefono, Sueldo, Antiguedad)
+VALUES ('RC', '222333444', 'Laura', 'Jiménez', 6, 7, 'Bucaramanga', 'Carrera 60 # 60-60', 'laura.jimenez@email.com', '3167892345', 3700000, '3 años');
+
+
+INSERT INTO EMPLEADO (tipo_documento, NoDocumento, Nombres, Apellidos, IdDepart, IdCargo, Ciudad, Direccion, Email, Telefono, Sueldo, Antiguedad)
+VALUES ('PA', '333444555', 'Andrés', 'García', 7, 1, 'Pereira', 'Avenida 70 # 70-70', 'andres.garcia@email.com', '3178903456', 4500000, '6 años');
+
+Select *from HistorialEdicionesEmpleado;
+Select *from HistorialEdicionesCargo;
+Select *from HistorialEdicionesDepartamento;
+Select *from Empleado;
+Select *from Cargo;
+Select *from Departamento;

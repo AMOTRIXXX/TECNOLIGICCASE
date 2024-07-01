@@ -1,0 +1,50 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+/* Cambiar el color de fondo y el color del texto de las tablas */
+.table-hover {
+    background-color: #C49DF4; /* Color de fondo de las tablas */
+    color: #343a40; /* Color del texto de las tablas */
+}
+
+    .table-hover tbody tr:hover {
+        background-color: #845AB7; /* Color de fondo al pasar el cursor por encima de las filas */
+    }
+
+/* Cambiar el color de fondo y el color del texto del thead */
+    .table-hover thead {
+        background: linear-gradient(to right, #000000, #800080);
+        color: #ffffff; /* Color del texto del thead */
+    }
+/* Cambiar el color de fondo al pasar el cursor por encima de nav-item */
+.navbar-nav .nav-item:hover {
+    background-color: #A876F0; /* Color de fondo al pasar el cursor por encima */
+    color: #343a40; /* Color del texto al pasar el cursor por encima */
+}
+body {
+    /* Asegúrate de que la imagen cubra todo el fondo */
+    background-image: url('tec2.gif');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 55%; /* Tamaño más pequeño */
+    background-position: right; /* Posición hacia la derecha */
+}

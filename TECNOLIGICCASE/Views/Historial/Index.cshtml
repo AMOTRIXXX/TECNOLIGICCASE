@@ -1,0 +1,67 @@
+﻿@model List<TECNOLIGICCASE.Models.HistorialEdicionesEmpleado>
+@using Newtonsoft.Json;
+
+<h1>Historial de Ediciones de Empleados</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Fecha de Edición</th>
+            <th>Empleado</th>
+            <th>Entidad</th>
+            <th>Datos Antiguos</th>
+            <th>Datos Nuevos</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var datosAntiguos = JsonConvert.DeserializeObject<TECNOLIGICCASE.Models.Empleado>(item.DatosAntiguos);
+            var datosNuevos = JsonConvert.DeserializeObject<TECNOLIGICCASE.Models.Empleado>(item.DatosNuevos);
+
+            <tr>
+                <td>@item.FechaEdicion.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                <td>@($"{datosAntiguos.Nombres} {datosAntiguos.Apellidos}")</td>
+                <td>@item.EntidadesEditadas</td>
+                <td>
+                    <ul>
+                        <li>IdEmpleado: @datosAntiguos.IdEmpleado</li>
+                        <li>Tipo Documento: @datosAntiguos.TipoDocumento</li>
+                        <li>No Documento: @datosAntiguos.NoDocumento</li>
+                        <li>Nombres: @datosAntiguos.Nombres</li>
+                        <li>Apellidos: @datosAntiguos.Apellidos</li>
+                        <li>Departamento: @datosAntiguos.NombreDepartamento</li>
+                        <li>Cargo: @datosAntiguos.Descripcion</li>
+                        <li>Ciudad: @datosAntiguos.Ciudad</li>
+                        <li>Dirección: @datosAntiguos.Direccion</li>
+                        <li>Email: @datosAntiguos.Email</li>
+                        <li>Teléfono: @datosAntiguos.Telefono</li>
+                        <li>Sueldo: @datosAntiguos.Sueldo</li>
+                        <li>Antigüedad: @datosAntiguos.Antiguedad</li>
+                        <li>Fecha de Creación: @datosAntiguos.FechaCreacion?.ToString("dd/MM/yyyy HH:mm:ss")</li>
+                        <li>Fecha de Modificación: @datosAntiguos.FechaModificacion?.ToString("dd/MM/yyyy HH:mm:ss")</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>IdEmpleado: @datosNuevos.IdEmpleado</li>
+                        <li>Tipo Documento: @datosNuevos.TipoDocumento</li>
+                        <li>No Documento: @datosNuevos.NoDocumento</li>
+                        <li>Nombres: @datosNuevos.Nombres</li>
+                        <li>Apellidos: @datosNuevos.Apellidos</li>
+                        <li>Departamento: @datosNuevos.NombreDepartamento</li>
+                        <li>Cargo: @datosNuevos.Descripcion</li>
+                        <li>Ciudad: @datosNuevos.Ciudad</li>
+                        <li>Dirección: @datosNuevos.Direccion</li>
+                        <li>Email: @datosNuevos.Email</li>
+                        <li>Teléfono: @datosNuevos.Telefono</li>
+                        <li>Sueldo: @datosNuevos.Sueldo</li>
+                        <li>Antigüedad: @datosNuevos.Antiguedad</li>
+                        <li>Fecha de Creación: @datosNuevos.FechaCreacion?.ToString("dd/MM/yyyy HH:mm:ss")</li>
+                        <li>Fecha de Modificación: @datosNuevos.FechaModificacion?.ToString("dd/MM/yyyy HH:mm:ss")</li>
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

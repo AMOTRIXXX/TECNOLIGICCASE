@@ -1,0 +1,48 @@
+﻿@model IEnumerable<TECNOLIGICCASE.Models.Cargo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Cargo</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success btn-sm"><i class="bi bi-person-plus"></i>Crear  Nuevo Cargo</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaModificacion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCreacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaModificacion)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdCargo" class="btn btn-warning btn-sm"><i class="bi bi-pencil"></i>Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdCargo" class="btn btn-info btn-sm"><i class="bi bi-ticket-detailed"></i>Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdCargo" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i>Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<TECNOLIGICCASE.Models.Empleado>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Empleado</h1>
+<br>
+<div class="row mb-2">
+    <div class="col-md-12">
+        <a asp-action="Create" class="btn btn-success btn-sm"><i class="bi bi-person-plus"></i> Crear Nuevo Empleado</a>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Tipo Doc.</th>
+                    <th>No. Doc.</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Ciudad</th>
+                    <th>Dirección</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Sueldo</th>
+                    <th>Antigüedad</th>
+                    <th>Fecha Creación</th>
+                    <th>Fecha Modificación</th>
+                    <th>Cargo</th>
+                    <th>Departamento</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.TipoDocumento)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NoDocumento)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Nombres)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Apellidos)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Ciudad)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Direccion)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Sueldo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Antiguedad)</td>
+                        <td>@Html.DisplayFor(modelItem => item.FechaCreacion)</td>
+                        <td>@Html.DisplayFor(modelItem => item.FechaModificacion)</td>
+                        <td>@Html.DisplayFor(modelItem => item.oCargo.Descripcion)</td>
+                        <td>@Html.DisplayFor(modelItem => item.oDepart.NombreDepartamento)</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.IdEmpleado" class="btn btn-warning btn-sm"><i class="bi bi-pencil"></i> </a>
+                            <a asp-action="Details" asp-route-id="@item.IdEmpleado" class="btn btn-info btn-sm"><i class="bi bi-ticket-detailed"></i> </a>
+                            <a asp-action="Delete" asp-route-id="@item.IdEmpleado" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
